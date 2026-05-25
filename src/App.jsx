@@ -5,10 +5,14 @@ function App() {
   const [memories, setMemories] = useState([]);
   const [text, setText] = useState("");
 
+  // NUEVO
+  const API_URL =
+    import.meta.env.VITE_API_URL;
+
   const fetchMemories = async () => {
 
     const response = await fetch(
-      "http://127.0.0.1:8000/memories"
+      `${API_URL}/memories`
     );
 
     const data = await response.json();
@@ -25,7 +29,7 @@ function App() {
     if (!text.trim()) return;
 
     await fetch(
-      "http://127.0.0.1:8000/memories",
+      `${API_URL}/memories`,
       {
         method: "POST",
         headers: {
